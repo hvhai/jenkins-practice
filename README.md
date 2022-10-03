@@ -20,3 +20,49 @@ docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenk
 3. Run scan source in pipline
    ![run scan source](docs/assets/run-scan-pipeline.png)
 
+## Create first Jenkinsfile
+
+1. Create simple [Jenkinsfile](/Jenkinsfile) in *dev* branch and push to the git repo
+   ```groovy
+   pipeline {
+      agent any
+      stages {
+         stage("init") {
+            steps {
+               echo 'hello Jenkins'
+            }
+         }
+
+         stage("build") {
+            steps {
+               echo 'build project'
+            }
+         }
+
+         stage("test") {
+            steps {
+               echo 'test project'
+            }
+         }
+
+         stage("deploy") {
+            steps {
+               echo 'deploy project'
+            }
+         }
+      }
+   }
+   ```
+
+2. Run the scan pipeline, the dev run will show success:
+   ![run first Jenkinsfile](docs/assets/run-first-jenkinsfile.png)
+3. Click on dev to see the buid details
+   ![build detail](docs/assets/build-details.png)
+
+## Trigger build automatically
+
+1. Pushing build using web hook
+   Need support from source code repository
+2. Polling with interval
+   ![polling scan](docs/assets/polling-scan.png)
+   
